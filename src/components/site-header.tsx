@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { authClient } from "../lib/auth-client";
@@ -15,8 +15,13 @@ import {
 
 export function SiteHeader() {
   const router = useRouter();
+  const pathname = usePathname();
   const { data: session, isPending } = authClient.useSession();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  if (pathname.startsWith("/movies/") || pathname.startsWith("/sign-")) {
+    return null;
+  }
 
   async function handleLogout() {
     try {
