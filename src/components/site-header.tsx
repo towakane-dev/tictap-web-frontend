@@ -19,7 +19,11 @@ export function SiteHeader() {
   const { data: session, isPending } = authClient.useSession();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  if (pathname.startsWith("/movies/") || pathname.startsWith("/sign-")) {
+  if (
+    pathname.startsWith("/movies/") ||
+    pathname.startsWith("/sign-") ||
+    pathname.startsWith("/order/")
+  ) {
     return null;
   }
 
@@ -135,4 +139,3 @@ export function SiteHeader() {
 }
 
 export default SiteHeader;
-
